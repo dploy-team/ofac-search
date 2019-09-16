@@ -1,12 +1,9 @@
 from flask import Flask, request
 from flask_restful import Resource, Api
-from sqlalchemy import create_engine
-from json import dumps
 import ofacdb
 import ofacsearch
 from flask import request
 from flask import jsonify
-from flask import Response
 
 
 app = Flask(__name__)
