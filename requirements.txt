@@ -1,0 +1,6 @@
+Flask_RESTful==0.3.7
+pyjarowinkler==1.8
+Flask==1.1.1
+Fuzzy==1.2.2
+wget==3.2
+peewee==3.10.0

@@ -21,7 +21,7 @@ def search_db(table):
     conn = None
     conn = sqlite3.connect('ofac.db')
     cur = conn.cursor()
-    cur.execute("SELECT sdn_name, ent_num FROM "+table)
+    cur.execute("SELECT sdn_name, id FROM "+table)
     rows = cur.fetchall()
 
     return rows;
