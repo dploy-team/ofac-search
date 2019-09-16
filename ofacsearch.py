@@ -2,6 +2,7 @@ import sys
 from pyjarowinkler import distance
 from peewee import *
 import sqlite3
+import fuzzy
 
 class OfacResult:
     score = 0
@@ -27,6 +28,7 @@ def search_db(table):
 
 def search(name, min_score):
     
+    print(min_score)
     input_name = name
     min_score = float(min_score)
     
