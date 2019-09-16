@@ -10,7 +10,7 @@
 
 ## Instalation
 
-`git clone https://github.com/dploy-team/ofac-search.git`
-`cd ofac-search`
-`pip3 install -r requirements.txt`
-`python3 server.py`
+- `git clone https://github.com/dploy-team/ofac-search.git`
+- `cd ofac-search`
+- `pip3 install -r requirements.txt`
+- `python3 server.py`
