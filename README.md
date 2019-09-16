@@ -5,8 +5,8 @@
 `GET` http://host:5002/search?name=BinLaden&min_score=50 -> Para fazer a pesquisa
 
 ## Requirements
--> Python3
--> Pip3
+- Python3
+- Pip3
 
 ## Instalation
 
