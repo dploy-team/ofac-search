@@ -20,16 +20,13 @@ class ImportFiles(Resource):
 
 class SearchOfac(Resource):
     def get(self):
-
-        # try:
-        name = request.args.get('name')
-        min_score = request.args.get('min_score')
-        print(name)
-        print(min_score)
-        result = ofacsearch.search(name, min_score)
-        return jsonify(result)
-        # except:
-            # return jsonify("{message: 'Ocorreu um erro ao pesquisar na base!'}")
+        try:
+            name = request.args.get('name')
+            min_score = request.args.get('min_score')
+            result = ofacsearch.search(name, min_score)
+            return jsonify(result)
+        except:
+            return jsonify("{message: 'Ocorreu um erro ao pesquisar na base!'}")
 
 api.add_resource(ImportFiles, '/import')
 api.add_resource(SearchOfac, '/search')
