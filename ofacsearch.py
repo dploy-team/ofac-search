@@ -1,7 +1,5 @@
 import sys
-from elasticsearch import Elasticsearch
 from pyjarowinkler import distance
-import fuzzy
 from peewee import *
 import sqlite3
 
