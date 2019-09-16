@@ -30,7 +30,6 @@ SOFTWARE.
 
 from peewee import *
 import csv
-from elasticsearch import Elasticsearch
 from playhouse.shortcuts import model_to_dict, dict_to_model
 import wget
 import os, shutil
