@@ -1,8 +1,11 @@
 import sys
-from pyjarowinkler import distance
 from peewee import *
 import sqlite3
 import fuzzy
+from soundex import Difference
+
+from similarity.jarowinkler import JaroWinkler
+
 
 class OfacResult:
     score = 0
@@ -26,9 +29,32 @@ def search_db(table):
 
     return rows;
 
-def search(name, min_score):
+
+def GetScore(src_name, input_name):
+
+    jarowinkler = JaroWinkler()
+
+
+    for src_name_part in src_name.split():
+        total_score_input_name_part = 0
+        for input_name_part in input_name.split():
+            winkler_part = jarowinkler.similarity(input_name_part, src_name_part)
+            difference = Difference(input_name_part, src_name_part)
+
+            combined_score = ((winkler_part * 100) + (difference * 100)) / 2
+            total_score_input_name_part += combined_score
+            
+        avg_score_input_name = total_score_input_name_part / len(src_name.split()) / len(input_name.split()) 
+        
+    full_inputted_jaro = jarowinkler.similarity(input_name, src_name) * 100
+    score = full_inputted_jaro
+    if (avg_score_input_name > full_inputted_jaro):
+        score = avg_score_input_name
+
+    return score
     
-    print(min_score)
+
+def search(name, min_score):
     input_name = name
     min_score = float(min_score)
     
@@ -41,18 +67,15 @@ def search(name, min_score):
     for hit in hits:
         src_name = hit[0].upper()
         ofac_id = str(hit[1])
-        # print(src_name)
+        score = GetScore(src_name, input_name)
         
-        winkler = distance.get_jaro_distance(input_name, src_name, winkler=True, scaling=0.1)
-        diff = 0
-        src_name_part_nysiis = fuzzy.nysiis(src_name)
-        input_name_nysiis = fuzzy.nysiis(input_name)
-        if (input_name_nysiis and src_name_part_nysiis):
-            diff = distance.get_jaro_distance(src_name_part_nysiis, fuzzy.nysiis(input_name) )
-
-        score = ( (winkler * 100) + (diff * 100)) / 2
         if(score > min_score):
+            print(src_name+'==='+str(score))
             results.append(OfacResult(score, src_name, ofac_id).__dict__)
     return results
 if __name__ == '__main__':
-    search('Wagner', 70)
+    
+    src= 'RODRIGUEZ OREJUELA, Gilberto Jose'
+    name='RODRIGUEZ OREJUELA, Gilberto Jose'
+
+    search('OREJUELA', 10)
