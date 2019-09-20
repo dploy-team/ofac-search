@@ -19,21 +19,23 @@ def Soundex(data):
         result = result + ('0' * (4 - len(result)))
     return result
 
+
 def EncodeChar(c):
     c = c.lower()
-    if (c in ['b','f','p','v']):
+    if (c in ['b', 'f', 'p', 'v']):
         return "1"
-    if (c in ['c','g','j','k','q','s','x','z']):
+    if (c in ['c', 'g', 'j', 'k', 'q', 's', 'x', 'z']):
         return "2"
-    if (c in ['d','t']):
+    if (c in ['d', 't']):
         return "3"
     if (c in ['l']):
         return "4"
-    if (c in ['m','n']):
+    if (c in ['m', 'n']):
         return "5"
     if (c in ['r']):
         return "6"
     return ""
+
 
 def Difference(data1, data2):
     result = 0
@@ -67,7 +69,12 @@ def Difference(data1, data2):
         sub6 = soundex1[3]
         if (Index(soundex2, sub6) > -1):
             result += 1
-    
+
+    return result
+
+
+def ParsedDifference(data1, data2):
+    result = Difference(data1, data2)
     if (result == 1):
         return 0
     if (result == 2):
@@ -77,8 +84,13 @@ def Difference(data1, data2):
     if (result == 4):
         return 1
 
+
 def Index(string, sub):
     try:
         return string.index(sub)
     except ValueError as e:
         return -1
+
+
+if __name__ == "__main__":
+    print(ParsedDifference('OREJUELA', 'SERCUBA'))
