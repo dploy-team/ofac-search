@@ -89,7 +89,7 @@ def GetScore(src_name, input_name, min_score):
 
 
 def search(name, min_score):
-    input_name = name
+    input_name = name.upper()
     min_score = float(min_score)
 
     tables = ['sdn', 'consolidated']
@@ -113,4 +113,4 @@ def search(name, min_score):
     # src = 'RODRIGUEZ OREJUELA, Gilberto Jose'
     # name = 'RODRIGUEZ OREJUELA, Gilberto Jose'
 
-    # search('RODRIGUEZ OREJUELA', 90)
+    # search('bin laden', 90)
