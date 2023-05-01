@@ -1,6 +1,6 @@
 peewee==3.10.0
 wget==3.2
-Flask==1.1.1
+Flask==2.3.2
 Fuzzy==1.2.2
 Flask_RESTful==0.3.7
 strsim==0.0.3
